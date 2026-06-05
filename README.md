@@ -6,7 +6,7 @@
 > smallholder farmer actually makes — when to plant, when to spray, when to harvest — and shows
 > how that advice reaches a feature phone over SMS/USSD, no internet required.
 
-🔗 **Live demo:** _<LIVE_URL>_
+🔗 **Live demo:** <https://shamba-cast.vercel.app>
 📦 **Repo:** <https://github.com/cloud-007/shamba-cast>
 
 ![Shamba Cast dashboard](docs/img/dashboard.png)
