@@ -23,7 +23,8 @@ channel for agricultural advice.
 So Shamba Cast is built around that mission rather than around the API's mechanics:
 
 - It reframes the free-tier forecast as **farm decisions**, not just numbers.
-- It surfaces Weather-AI's **AI natural-language summary** as a first-class feature.
+- It turns the forecast into a plain-language **briefing** a farmer can act on (Weather-AI's own
+  AI narrative is a Pro-tier feature this would swap in).
 - It includes an in-browser **USSD + SMS simulator** that mirrors Weather-AI's flagship
   Scale-tier last-mile delivery — so you can see the whole product story end to end.
 
