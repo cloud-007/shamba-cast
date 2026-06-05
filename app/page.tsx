@@ -23,7 +23,7 @@ export default function Page() {
   const load = useCallback(async (lat: number, lon: number) => {
     setLoading(true); setError(null);
     try {
-      const r = await fetch(`/api/forecast?lat=${lat}&lon=${lon}&units=${units}`);
+      const r = await fetch(`/api/forecast?lat=${lat}&lon=${lon}&units=${units}&name=${encodeURIComponent(coords.name)}`);
       const j = await r.json();
       if (!r.ok) throw new Error(j.error ?? "Failed");
       setData(j);
@@ -54,7 +54,7 @@ export default function Page() {
       {data && <>
         <div className="grid gap-6 md:grid-cols-3">
           <CurrentCard forecast={data.forecast} />
-          <AiSummaryPanel summary={data.forecast.aiSummary} />
+          <AiSummaryPanel summary={data.forecast.summary} />
           <GddCard gdd={data.gdd} />
         </div>
         <ForecastStrip days={data.forecast.daily} units={units} />
@@ -63,7 +63,7 @@ export default function Page() {
         <UssdSimulator location={coords.name} report={data.advisory} />
       </>}
       <footer className="pt-8 text-xs text-gray-400">
-        Advisories are derived from free-tier forecast data, not Weather-AI's paid /v1/insights.
+        The forecast briefing and advisories are generated locally from Weather-AI's free-tier forecast — not their paid /v1/insights AI engine.
         SMS/USSD below is a simulation of Weather-AI's Scale-tier last-mile delivery.
       </footer>
     </main>

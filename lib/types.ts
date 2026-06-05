@@ -30,7 +30,7 @@ export interface Forecast {
   current: Current;
   daily: DayForecast[];
   hourly: HourForecast[];
-  aiSummary?: string;
+  summary?: string;
 }
 
 export interface GddDay { date: string; gdd: number; accumulated: number; }

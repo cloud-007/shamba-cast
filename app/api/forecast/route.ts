@@ -10,11 +10,12 @@ export async function GET(req: NextRequest) {
   }
   const lat = Number(rawLat), lon = Number(rawLon);
   const units: Units = sp.get("units") === "imperial" ? "imperial" : "metric";
+  const name = sp.get("name") ?? undefined;
   const key = process.env.WEATHER_AI_API_KEY;
   if (!key) return NextResponse.json({ error: "Server is missing its API key." }, { status: 500 });
 
   try {
-    const data = await fetchForecast(lat, lon, units, key);
+    const data = await fetchForecast(lat, lon, units, key, name);
     return NextResponse.json(data);
   } catch (e) {
     if (e instanceof WeatherAiError) {

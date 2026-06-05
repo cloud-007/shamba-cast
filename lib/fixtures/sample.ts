@@ -1,6 +1,7 @@
 import type { NormalizedResponse } from "@/lib/types";
 import { computeGdd } from "@/lib/gdd";
 import { buildAdvisory } from "@/lib/advisory";
+import { buildSummary } from "@/lib/summary";
 
 const daily = [
   { date: "2026-06-01", high: 24, low: 18, condition: "Scattered Showers" },
@@ -21,8 +22,9 @@ export const SAMPLE: NormalizedResponse = {
       time: `2026-06-01T${String(i * 2).padStart(2, "0")}:00`,
       temp: 18 + (i % 6), condition: i % 3 ? "Cloudy" : "Showers",
     })),
-    aiSummary: "Moderate rainfall expected midweek with a cold night on the 2nd. Conditions favour planting later in the week.",
   },
   gdd: computeGdd(daily, 10, "metric"),
   advisory: buildAdvisory(daily),
 };
+
+SAMPLE.forecast.summary = buildSummary(SAMPLE.forecast);
