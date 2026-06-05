@@ -7,7 +7,7 @@
 > how that advice reaches a feature phone over SMS/USSD, no internet required.
 
 🔗 **Live demo:** _<LIVE_URL>_
-📦 **Repo:** _<REPO_URL>_
+📦 **Repo:** <https://github.com/cloud-007/shamba-cast>
 
 ![Shamba Cast dashboard](docs/img/dashboard.png)
 
@@ -87,7 +87,7 @@ tests/                      # Vitest unit tests for the pure logic
 
 ### 2. Run locally
 ```bash
-git clone <REPO_URL>
+git clone git@github.com:cloud-007/shamba-cast.git
 cd shamba-cast
 cp .env.example .env.local        # then paste your key:
 # .env.local →  WEATHER_AI_API_KEY=wai_your_key_here
