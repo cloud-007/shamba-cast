@@ -97,7 +97,7 @@ export async function fetchForecast(
   key: string,
   name?: string
 ): Promise<NormalizedResponse> {
-  const url = `${BASE}/v1/weather?lat=${lat}&lon=${lon}&days=7&ai=true&units=${units}`;
+  const url = `${BASE}/v1/weather?lat=${lat}&lon=${lon}&days=7&units=${units}`;
   let res: Response;
   try {
     res = await fetch(url, { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" });

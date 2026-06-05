@@ -51,12 +51,13 @@ Browser (React components)
    │  GET /api/forecast?lat&lon&units
    ▼
 Next.js API route  (app/api/forecast/route.ts)   ← holds WEATHER_AI_API_KEY (server-only)
-   │  GET https://api.weather-ai.co/v1/weather?...&ai=true
+   │  GET https://api.weather-ai.co/v1/weather?lat&lon&units
    ▼
-Weather-AI ──▶ normalize (Zod, defensive) ──▶ NormalizedResponse
+Weather-AI ──▶ normalize (Zod, WMO codes) ──▶ NormalizedResponse
    │
    ├─▶ lib/gdd.ts       → growing degree days
    ├─▶ lib/advisory.ts  → plant / spray / harvest / frost / rain
+   ├─▶ lib/summary.ts   → local plain-language briefing
    └─▶ lib/sms.ts       → ≤160-char SMS + USSD screens
 ```
 
