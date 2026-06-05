@@ -31,7 +31,7 @@ Everything runs on the **free tier**.
 
 ## Features
 
-- **AI summary** — Weather-AI's `ai_summary` rendered front and centre.
+- **Forecast briefing** — a concise, plain-language summary generated locally from the free-tier forecast (Weather-AI's AI narrative is a Pro feature).
 - **Current + 7-day + hourly** forecast, with a °C/°F toggle.
 - **Growing Degree Days (GDD)** — heat-accumulation tracker (base 10 °C, maize) computed from the
   daily high/low, with a sparkline.
@@ -115,10 +115,11 @@ Deployed on **Vercel**. To deploy your own:
 
 This was built in a take-home time-box on the **free tier**, so I was deliberate about what's real:
 
-- ✅ **Real:** all weather data and the AI summary come from Weather-AI's `GET /v1/weather`.
+- ✅ **Real:** all weather data (current, daily, hourly) comes from Weather-AI's `GET /v1/weather`.
 - 🧮 **Derived:** the planting/spraying/harvesting/frost/GDD advice is computed *by this app* from
   the free forecast. It is **not** Weather-AI's paid `GET /v1/insights` agronomic engine (Pro+).
-  Each card states its reasoning so nothing is a black box.
+  Each card states its reasoning so nothing is a black box. The forecast briefing is also generated
+  locally — Weather-AI's AI summary / `/v1/insights` requires a Pro plan (returns 403 on free).
 - 🎭 **Simulated:** the USSD/SMS panel is a faithful UI mock of Weather-AI's Scale-tier
   SMS/USSD delivery — it does not send real messages (that endpoint requires a Scale plan and
   carrier approval).
