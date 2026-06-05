@@ -4,11 +4,12 @@ import type { Units } from "@/lib/types";
 
 export async function GET(req: NextRequest) {
   const sp = req.nextUrl.searchParams;
-  const lat = Number(sp.get("lat")), lon = Number(sp.get("lon"));
-  const units: Units = sp.get("units") === "imperial" ? "imperial" : "metric";
-  if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+  const rawLat = sp.get("lat"), rawLon = sp.get("lon");
+  if (rawLat === null || rawLon === null || !Number.isFinite(Number(rawLat)) || !Number.isFinite(Number(rawLon))) {
     return NextResponse.json({ error: "lat and lon are required numbers" }, { status: 400 });
   }
+  const lat = Number(rawLat), lon = Number(rawLon);
+  const units: Units = sp.get("units") === "imperial" ? "imperial" : "metric";
   const key = process.env.WEATHER_AI_API_KEY;
   if (!key) return NextResponse.json({ error: "Server is missing its API key." }, { status: 500 });
 

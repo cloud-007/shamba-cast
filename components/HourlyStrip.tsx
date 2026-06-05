@@ -1,7 +1,7 @@
 import type { HourForecast, Units } from "@/lib/types";
 export function HourlyStrip({ hours, units }: { hours: HourForecast[]; units: Units }) {
   if (!hours.length) return null;
-  const u = units === "metric" ? "°" : "°";
+  const u = units === "metric" ? "°C" : "°F";
   return (
     <section>
       <h2 className="mb-2 font-semibold">Hourly</h2>

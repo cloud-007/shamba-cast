@@ -8,8 +8,8 @@ export function AdvisoryPanel({ report }: { report: AdvisoryReport }) {
     <section>
       <h2 className="mb-2 font-semibold">Farm advisory</h2>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {report.items.map((i, idx) => (
-          <div key={idx} className={`rounded-xl border p-3 ${COLOR[i.status]}`}>
+        {report.items.map((i) => (
+          <div key={i.kind} className={`rounded-xl border p-3 ${COLOR[i.status]}`}>
             <p className="font-semibold capitalize">{i.title}</p>
             {i.dayRange && <p className="text-xs text-gray-500">{i.dayRange}</p>}
             <p className="mt-1 text-sm text-gray-700">{i.reason}</p>

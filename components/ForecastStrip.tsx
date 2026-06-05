@@ -1,6 +1,6 @@
 import type { DayForecast, Units } from "@/lib/types";
 export function ForecastStrip({ days, units }: { days: DayForecast[]; units: Units }) {
-  const u = units === "metric" ? "°" : "°";
+  const u = units === "metric" ? "°C" : "°F";
   return (
     <section>
       <h2 className="mb-2 font-semibold">7-day forecast</h2>
