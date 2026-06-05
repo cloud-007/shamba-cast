@@ -22,4 +22,9 @@ describe("computeGdd", () => {
   it("handles empty input", () => {
     expect(computeGdd([], 10, "metric").total).toBe(0);
   });
+  it("preserves fractional GDD without rounding", () => {
+    const s = computeGdd([{ date: "a", high: 25, low: 18, condition: "x" }], 10, "metric");
+    expect(s.days[0].gdd).toBe(11.5);
+    expect(s.total).toBe(11.5);
+  });
 });

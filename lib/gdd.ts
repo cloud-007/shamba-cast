@@ -4,7 +4,7 @@ export function computeGdd(days: DayForecast[], base = 10, units: Units = "metri
   let acc = 0;
   const out = days.map((d) => {
     const mean = (d.high + d.low) / 2;
-    const gdd = Math.max(0, Math.round(mean - base));
+    const gdd = Math.max(0, mean - base);
     acc += gdd;
     return { date: d.date, gdd, accumulated: acc };
   });

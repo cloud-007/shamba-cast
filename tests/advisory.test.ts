@@ -35,4 +35,21 @@ describe("buildAdvisory", () => {
     const kinds = buildAdvisory(dry).items.map(i => i.kind);
     expect(kinds).toEqual(expect.arrayContaining(["plant", "spray", "harvest"]));
   });
+  it("flags frost on exact boundary low of 4", () => {
+    const r = buildAdvisory([{ date: "1", high: 12, low: 4, condition: "Clear" }]);
+    const frost = r.items.find(i => i.kind === "frost");
+    expect(frost?.status).toBe("avoid");
+  });
+  it("single wet day does not trigger a rain alert", () => {
+    const r = buildAdvisory([{ date: "1", high: 20, low: 10, condition: "Rain" }]);
+    expect(r.items.some(i => i.kind === "rain")).toBe(false);
+  });
+  it("returns empty items for empty days array", () => {
+    expect(buildAdvisory([]).items).toEqual([]);
+  });
+  it("spray status is good when lowWind is true on dry outlook", () => {
+    const r = buildAdvisory(dry, true);
+    const spray = r.items.find(i => i.kind === "spray");
+    expect(spray?.status).toBe("good");
+  });
 });

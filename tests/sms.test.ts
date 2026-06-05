@@ -23,3 +23,14 @@ describe("ussdScreens", () => {
     expect(s.root).toMatch(/1\. Bomet/);
   });
 });
+
+describe("toSms edge cases", () => {
+  it("empty report items produces 'No major alerts' message", () => {
+    const msg = toSms("Bomet", { items: [] });
+    expect(msg).toContain("No major alerts");
+  });
+  it("very long location (200 chars) still produces <=160 char message", () => {
+    const longLoc = "A".repeat(200);
+    expect(toSms(longLoc, report).length).toBeLessThanOrEqual(160);
+  });
+});

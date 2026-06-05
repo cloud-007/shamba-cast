@@ -55,7 +55,7 @@ export async function fetchForecast(
   const daily = parsed.forecast.map(d => ({
     date: d.date, high: d.high, low: d.low, condition: d.condition, precipMm: d.precip_mm,
   }));
-  const hasWind = parsed.current.wind_kph !== undefined;
+  const lowWind = (parsed.current.wind_kph ?? Infinity) < 20; // kph; spray-safe threshold
 
   return {
     forecast: {
@@ -70,6 +70,6 @@ export async function fetchForecast(
       aiSummary: parsed.ai_summary,
     },
     gdd: computeGdd(daily, 10, units),
-    advisory: buildAdvisory(daily, hasWind),
+    advisory: buildAdvisory(daily, lowWind),
   };
 }

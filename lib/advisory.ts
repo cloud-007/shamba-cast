@@ -12,7 +12,7 @@ function longestRun<T>(arr: T[], pred: (x: T) => boolean): { len: number; start:
   return best;
 }
 
-export function buildAdvisory(days: DayForecast[], hasWind = false): AdvisoryReport {
+export function buildAdvisory(days: DayForecast[], lowWind = false): AdvisoryReport {
   const items: AdvisoryItem[] = [];
   if (!days.length) return { items };
 
@@ -42,9 +42,9 @@ export function buildAdvisory(days: DayForecast[], hasWind = false): AdvisoryRep
   // Spray: a dry day; need low wind (unknown on free tier)
   const dryDay = days.find(d => !isWet(d.condition));
   items.push(dryDay
-    ? { kind: "spray", status: hasWind ? "good" : "caution", title: "Spray window",
+    ? { kind: "spray", status: lowWind ? "good" : "caution", title: "Spray window",
         dayRange: dryDay.date,
-        reason: hasWind ? `Dry and calm on ${dryDay.date}.`
+        reason: lowWind ? `Dry and calm on ${dryDay.date}.`
           : `Dry on ${dryDay.date}. Wind data isn't on the free tier — confirm low wind before spraying.` }
     : { kind: "spray", status: "avoid", title: "No spray window",
         reason: "Wet across the outlook — spraying would wash off." });
