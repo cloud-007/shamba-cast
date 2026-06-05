@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const familjen = Familjen_Grotesk({
+  variable: "--font-familjen",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Shamba Cast — Weather advisories for farmers",
+  title: "Shamba Cast — Weather advice for your farm",
   description:
-    "Farmer-facing weather advisories powered by Weather-AI: AI summaries, growing degree days, plant/spray/harvest guidance, and SMS/USSD last-mile delivery.",
+    "Plain-language weather advice for farmers, powered by Weather-AI: what to plant, when to spray, when to harvest — and how to get it on any phone over SMS.",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${familjen.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
